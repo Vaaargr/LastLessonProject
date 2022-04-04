@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form method="POST" action="/login">
+        <h2>Вход в систему</h2>
+        <div th:if="${param.error}">
+            <p style="color: #FF1C19;">Введены неправильные данные пользователя.</p>
+        </div>
+        <div>
+            <input name="username" type="text" placeholder="Username" autofocus="true"/>
+            <input name="password" type="password" placeholder="Password"/>
+            <button type="submit">Log In</button>
+        </div>
+    </form>
+    <div>
+        <h4><a href="/registration">Зарегистрироваться</a></h4>
+    </div>
+</div>
+</body>
+</html>

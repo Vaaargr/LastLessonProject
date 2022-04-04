@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 th:inline="text">Текущий пользователь <a style="color: green;">[[${#httpServletRequest.remoteUser}]]</a>.<br>
+    <a href="/logout">Выйти</a></h2>
+    <p th:if="*{messageError}!=null">[[${messageError}]]</p>
+<form th:action="@{/messenger/update}" th:object="${newMessage}" method="post">
+    <label>Введите текст сообщения:</label>
+    <input type="text" th:field="*{message}">
+    <input type="submit" value="Отправить сообщение.">
+</form>
+<form th:action="@{/messenger}" method="get">
+    <label>Найти все сообщения пользователя:</label>
+    <input type="text" name="name">
+    <input type="submit" value="Найти">
+</form>
+<button><a href="/messenger">Найти все сообщения</a> </button>
+<table border="1px">
+    <tr>
+        <td>Имя отправителя</td>
+        <td>Сообщение</td>
+    </tr>
+    <tr th:each="message : ${allMessages}">
+        <td th:text="${message.username}"></td>
+        <td th:text="${message.message}"></td>
+    </tr>
+</table>
+</body>
+</html>
